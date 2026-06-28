@@ -1,0 +1,14 @@
+{
+    "name": "Hrpnx.BlendShapeSnapshot.Runtime",
+    "rootNamespace": "Hrpnx.BlendShapeSnapshot",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

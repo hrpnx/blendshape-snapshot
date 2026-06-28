@@ -1,0 +1,24 @@
+# Unity package .gitignore (from github/gitignore Unity.gitignore)
+.utmp/
+/[Ll]ibrary/
+/[Tt]emp/
+[Oo]bj/
+[Oo]bj.meta
+__Generated/
+__Generated.meta
+node_modules/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+*.log
+
+*.blend1
+*.blend1.meta
+
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+/[Aa]ssets/Plugins/Editor/JetBrains*
+*.DotSettings.user
+.vs/
