@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRC.SDKBase;
 
-namespace Hrpnx.BlendShapeSnapshot
+namespace Hrpnx.BlendshapeSnapshot
 {
     /// <summary>
     /// 同一 GameObject の SkinnedMeshRenderer の BlendShape ウェイトを
     /// 名前付きスナップショットとして保存・復元するエディタ専用コンポーネント。
     /// </summary>
     [RequireComponent(typeof(SkinnedMeshRenderer))]
-    public class BlendShapeSnapshot : MonoBehaviour, IEditorOnly
+    public class BlendshapeSnapshot : MonoBehaviour, IEditorOnly
     {
         [SerializeField]
         private List<Snapshot> _snapshots = new();

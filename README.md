@@ -1,17 +1,32 @@
-# BlendShape Snapshot
+# Blendshape Snapshot
 
-SkinnedMeshRenderer の BlendShape ウェイトを名前付きスナップショットとして保存・復元する Unity エディタ拡張。
+SkinnedMeshRenderer の BlendShape ウェイトを、名前を付けて保存・復元できる Unity エディタ拡張です。
 
-## 機能
+ウェイトの組み合わせを何通りか保存しておき、履歴からワンクリックで切り替えられます。顔の改変や体型調整で、複数の案を見比べたいときに使えます。
 
-- 同一 GameObject の SkinnedMeshRenderer の全 BlendShape を名前付きで保存（履歴は新しい順 = 履歴1 が最新）
-- 履歴行の **↑** で復元（名前ベース。現在のメッシュに無い名前はスキップ）、**✕** で削除
-- 名前未入力で保存すると `yyyy-MM-dd HH:mm:ss` を自動採番
-- `IEditorOnly`（VRChat ビルド時に除去）、復元・削除・保存は Undo 対応
+## できること
+
+- 全 BlendShape のウェイトを名前付きで保存します。履歴は新しい順に並びます。
+- 履歴からワンクリックで復元します。戻したいときは Unity の Undo（Ctrl+Z）が効きます。
+- ウェイトは BlendShape 名で記録します。メッシュを差し替えても、同じ名前のシェイプには復元できます（無い名前はスキップします）。
+- エディタ専用です。VRChat にアップロードすると自動で取り除かれ、アバター本体には残りません。
 
 ## インストール
 
-`Packages/manifest.json` か VPM で `dev.hrpnx.blendshape-snapshot` を追加。エディタ専用。
+VPM 対応ツール（VRChat Creator Companion など）か、`Packages/manifest.json` に `dev.hrpnx.blendshape-snapshot` を追加してください。
+
+## 使い方
+
+ここでは顔の改変を例に説明します。体型や衣装など、他の BlendShape でも操作は同じです。
+
+1. 顔の SkinnedMeshRenderer がある GameObject（多くは Body）を選びます。
+2. インスペクター最下部の **Add Component** から **BlendShape Snapshot** を追加します。
+3. 顔の BlendShape のウェイトを好きな状態に調整します。
+4. 名前（例: 笑顔ベース）を入れて **保存** を押すと、その時点の全ウェイトを記録します。名前を空のまま押すと日時が入ります。
+5. 別の案を作るときは 3〜4 を繰り返します。
+6. 履歴の各行で操作します。
+   - **↑** … その状態に復元します。案を見比べたいときに切り替えます。
+   - **✕** … その履歴を削除します。
 
 ## ライセンス
 

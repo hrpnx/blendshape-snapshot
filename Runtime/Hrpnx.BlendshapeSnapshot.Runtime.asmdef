@@ -1,6 +1,6 @@
 {
-    "name": "Hrpnx.BlendShapeSnapshot.Runtime",
-    "rootNamespace": "Hrpnx.BlendShapeSnapshot",
+    "name": "Hrpnx.BlendshapeSnapshot.Runtime",
+    "rootNamespace": "Hrpnx.BlendshapeSnapshot",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

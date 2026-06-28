@@ -2,10 +2,10 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace Hrpnx.BlendShapeSnapshot
+namespace Hrpnx.BlendshapeSnapshot
 {
-    [CustomEditor(typeof(BlendShapeSnapshot))]
-    public class BlendShapeSnapshotEditor : Editor
+    [CustomEditor(typeof(BlendshapeSnapshot))]
+    public class BlendshapeSnapshotEditor : Editor
     {
         private const float ButtonWidth = 24f;
         private const float SaveButtonWidth = 60f;
@@ -14,7 +14,7 @@ namespace Hrpnx.BlendShapeSnapshot
 
         public override void OnInspectorGUI()
         {
-            var component = (BlendShapeSnapshot)target;
+            var component = (BlendshapeSnapshot)target;
             var smr = component.GetComponent<SkinnedMeshRenderer>();
             var mesh = smr != null ? smr.sharedMesh : null;
 
@@ -32,7 +32,7 @@ namespace Hrpnx.BlendShapeSnapshot
             DrawHistory(component, smr, mesh);
         }
 
-        private void DrawSaveRow(BlendShapeSnapshot component, SkinnedMeshRenderer smr, Mesh mesh)
+        private void DrawSaveRow(BlendshapeSnapshot component, SkinnedMeshRenderer smr, Mesh mesh)
         {
             using (new EditorGUILayout.HorizontalScope())
             {
@@ -47,7 +47,7 @@ namespace Hrpnx.BlendShapeSnapshot
             }
         }
 
-        private void DrawHistory(BlendShapeSnapshot component, SkinnedMeshRenderer smr, Mesh mesh)
+        private void DrawHistory(BlendshapeSnapshot component, SkinnedMeshRenderer smr, Mesh mesh)
         {
             var snapshots = component.Snapshots;
             int deleteIndex = -1;
@@ -79,12 +79,12 @@ namespace Hrpnx.BlendShapeSnapshot
             }
         }
 
-        private void Save(BlendShapeSnapshot component, SkinnedMeshRenderer smr)
+        private void Save(BlendshapeSnapshot component, SkinnedMeshRenderer smr)
         {
             string name = SnapshotName.Resolve(_inputName, DateTime.Now);
-            var snapshot = BlendShapeSnapshotIO.Capture(smr, name);
+            var snapshot = BlendshapeSnapshotIO.Capture(smr, name);
 
-            Undo.RecordObject(component, "Save BlendShape Snapshot");
+            Undo.RecordObject(component, "Save Blendshape Snapshot");
             component.Snapshots.Insert(0, snapshot);
             EditorUtility.SetDirty(component);
 
@@ -92,24 +92,24 @@ namespace Hrpnx.BlendShapeSnapshot
             GUI.FocusControl(null);
         }
 
-        private static void Restore(SkinnedMeshRenderer smr, BlendShapeSnapshot.Snapshot snapshot)
+        private static void Restore(SkinnedMeshRenderer smr, BlendshapeSnapshot.Snapshot snapshot)
         {
-            Undo.RecordObject(smr, "Restore BlendShape Snapshot");
-            int applied = BlendShapeSnapshotIO.Apply(smr, snapshot);
+            Undo.RecordObject(smr, "Restore Blendshape Snapshot");
+            int applied = BlendshapeSnapshotIO.Apply(smr, snapshot);
             EditorUtility.SetDirty(smr);
 
             int missing = snapshot.Values.Count - applied;
             if (missing > 0)
             {
                 Debug.LogWarning(
-                    $"[BlendShapeSnapshot] {missing} 件の BlendShape が現在のメッシュに存在せずスキップしました。"
+                    $"[BlendshapeSnapshot] {missing} 件の BlendShape が現在のメッシュに存在せずスキップしました。"
                 );
             }
         }
 
-        private static void Delete(BlendShapeSnapshot component, int index)
+        private static void Delete(BlendshapeSnapshot component, int index)
         {
-            Undo.RecordObject(component, "Delete BlendShape Snapshot");
+            Undo.RecordObject(component, "Delete Blendshape Snapshot");
             component.Snapshots.RemoveAt(index);
             EditorUtility.SetDirty(component);
         }

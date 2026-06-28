@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 
-namespace Hrpnx.BlendShapeSnapshot.Tests
+namespace Hrpnx.BlendshapeSnapshot.Tests
 {
     public class SnapshotNameTests
     {

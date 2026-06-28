@@ -1,6 +1,6 @@
 using System;
 
-namespace Hrpnx.BlendShapeSnapshot
+namespace Hrpnx.BlendshapeSnapshot
 {
     /// <summary>スナップショット名の決定ロジック。未入力なら現在時刻を 24 時間表記で用いる。</summary>
     public static class SnapshotName

@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Hrpnx.BlendShapeSnapshot.Tests
+namespace Hrpnx.BlendshapeSnapshot.Tests
 {
-    public class BlendShapeSnapshotIOTests
+    public class BlendshapeSnapshotIOTests
     {
         private static Mesh CreateMesh(params string[] shapeNames)
         {
@@ -39,7 +39,7 @@ namespace Hrpnx.BlendShapeSnapshot.Tests
                 smr.SetBlendShapeWeight(1, 20f);
                 smr.SetBlendShapeWeight(2, 30f);
 
-                var snapshot = BlendShapeSnapshotIO.Capture(smr, "test");
+                var snapshot = BlendshapeSnapshotIO.Capture(smr, "test");
 
                 Assert.AreEqual("test", snapshot.Name);
                 Assert.AreEqual(3, snapshot.Values.Count);
@@ -63,13 +63,13 @@ namespace Hrpnx.BlendShapeSnapshot.Tests
                 smr.SetBlendShapeWeight(0, 10f);
                 smr.SetBlendShapeWeight(1, 20f);
                 smr.SetBlendShapeWeight(2, 30f);
-                var snapshot = BlendShapeSnapshotIO.Capture(smr, "test");
+                var snapshot = BlendshapeSnapshotIO.Capture(smr, "test");
 
                 smr.SetBlendShapeWeight(0, 0f);
                 smr.SetBlendShapeWeight(1, 0f);
                 smr.SetBlendShapeWeight(2, 0f);
 
-                int applied = BlendShapeSnapshotIO.Apply(smr, snapshot);
+                int applied = BlendshapeSnapshotIO.Apply(smr, snapshot);
 
                 Assert.AreEqual(3, applied);
                 Assert.AreEqual(10f, smr.GetBlendShapeWeight(0));
@@ -88,13 +88,13 @@ namespace Hrpnx.BlendShapeSnapshot.Tests
         {
             var sourceMesh = CreateMesh("a", "b", "c");
             var sourceSmr = CreateRenderer(sourceMesh, out var sourceGo);
-            BlendShapeSnapshot.Snapshot snapshot;
+            BlendshapeSnapshot.Snapshot snapshot;
             try
             {
                 sourceSmr.SetBlendShapeWeight(0, 10f);
                 sourceSmr.SetBlendShapeWeight(1, 20f);
                 sourceSmr.SetBlendShapeWeight(2, 30f);
-                snapshot = BlendShapeSnapshotIO.Capture(sourceSmr, "test");
+                snapshot = BlendshapeSnapshotIO.Capture(sourceSmr, "test");
             }
             finally
             {
@@ -107,7 +107,7 @@ namespace Hrpnx.BlendShapeSnapshot.Tests
             var targetSmr = CreateRenderer(targetMesh, out var targetGo);
             try
             {
-                int applied = BlendShapeSnapshotIO.Apply(targetSmr, snapshot);
+                int applied = BlendshapeSnapshotIO.Apply(targetSmr, snapshot);
 
                 Assert.AreEqual(2, applied);
                 Assert.AreEqual(

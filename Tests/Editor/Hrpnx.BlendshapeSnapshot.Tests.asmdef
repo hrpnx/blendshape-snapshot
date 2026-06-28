@@ -1,8 +1,8 @@
 {
-    "name": "Hrpnx.BlendShapeSnapshot.Tests",
-    "rootNamespace": "Hrpnx.BlendShapeSnapshot.Tests",
+    "name": "Hrpnx.BlendshapeSnapshot.Tests",
+    "rootNamespace": "Hrpnx.BlendshapeSnapshot.Tests",
     "references": [
-        "Hrpnx.BlendShapeSnapshot.Runtime",
+        "Hrpnx.BlendshapeSnapshot.Runtime",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

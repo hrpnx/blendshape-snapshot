@@ -1,17 +1,17 @@
 using UnityEngine;
 
-namespace Hrpnx.BlendShapeSnapshot
+namespace Hrpnx.BlendshapeSnapshot
 {
     /// <summary>
     /// SkinnedMeshRenderer と Snapshot の間で BlendShape ウェイトを採取・適用する純粋ロジック。
     /// Undo やダーティ化は呼び出し側 (Editor) の責務とし、ここでは値の読み書きのみ行う。
     /// </summary>
-    public static class BlendShapeSnapshotIO
+    public static class BlendshapeSnapshotIO
     {
         /// <summary>SMR の全 BlendShape を名前→ウェイトで採取する。</summary>
-        public static BlendShapeSnapshot.Snapshot Capture(SkinnedMeshRenderer smr, string name)
+        public static BlendshapeSnapshot.Snapshot Capture(SkinnedMeshRenderer smr, string name)
         {
-            var snapshot = new BlendShapeSnapshot.Snapshot { Name = name };
+            var snapshot = new BlendshapeSnapshot.Snapshot { Name = name };
             var mesh = smr != null ? smr.sharedMesh : null;
             if (mesh == null)
             {
@@ -22,7 +22,7 @@ namespace Hrpnx.BlendShapeSnapshot
             for (int i = 0; i < count; i++)
             {
                 snapshot.Values.Add(
-                    new BlendShapeSnapshot.ShapeValue
+                    new BlendshapeSnapshot.ShapeValue
                     {
                         Name = mesh.GetBlendShapeName(i),
                         Weight = smr.GetBlendShapeWeight(i),
@@ -37,7 +37,7 @@ namespace Hrpnx.BlendShapeSnapshot
         /// スナップショットの値を SMR に書き戻す。現在のメッシュに存在しない名前はスキップする。
         /// </summary>
         /// <returns>実際に適用できた BlendShape の件数。</returns>
-        public static int Apply(SkinnedMeshRenderer smr, BlendShapeSnapshot.Snapshot snapshot)
+        public static int Apply(SkinnedMeshRenderer smr, BlendshapeSnapshot.Snapshot snapshot)
         {
             var mesh = smr != null ? smr.sharedMesh : null;
             if (mesh == null || snapshot == null)
