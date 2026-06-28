@@ -13,7 +13,11 @@ SkinnedMeshRenderer の BlendShape ウェイトを、名前を付けて保存・
 
 ## インストール
 
-VPM 対応ツール（VRChat Creator Companion など）か、`Packages/manifest.json` に `dev.hrpnx.blendshape-snapshot` を追加してください。
+### VRChat Creator Companion (推奨)
+
+1. [hrpnx](https://hrpnx.github.io/vpm-repos/) を VCC に追加
+2. Manage Project から `Blendshape Snapshot` を選択
+3. パッケージが自動的にインストールされます
 
 ## 使い方
 

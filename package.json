@@ -1,7 +1,7 @@
 {
   "name": "dev.hrpnx.blendshape-snapshot",
   "version": "0.1.0",
-  "displayName": "hrpnx's Blendshape Snapshot",
+  "displayName": "Blendshape Snapshot",
   "description": "Save and restore SkinnedMeshRenderer BlendShape weights as named snapshots in the editor.",
   "unity": "2022.3",
   "author": {
