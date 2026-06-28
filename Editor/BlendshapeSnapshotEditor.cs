@@ -7,7 +7,8 @@ namespace Hrpnx.BlendshapeSnapshot
     [CustomEditor(typeof(BlendshapeSnapshot))]
     public class BlendshapeSnapshotEditor : Editor
     {
-        private const float ButtonWidth = 24f;
+        private const float ApplyButtonWidth = 60f;
+        private const float MenuButtonWidth = 24f;
         private const float SaveButtonWidth = 60f;
 
         private string _inputName = string.Empty;
@@ -50,32 +51,53 @@ namespace Hrpnx.BlendshapeSnapshot
         private void DrawHistory(BlendshapeSnapshot component, SkinnedMeshRenderer smr, Mesh mesh)
         {
             var snapshots = component.Snapshots;
-            int deleteIndex = -1;
 
             for (int i = 0; i < snapshots.Count; i++)
             {
                 using (new EditorGUILayout.HorizontalScope())
                 {
+                    // 名前を左に置いて伸縮させ、操作ボタンを右寄せにする。
+                    EditorGUILayout.LabelField(snapshots[i].Name);
+
                     using (new EditorGUI.DisabledScope(mesh == null))
                     {
-                        if (GUILayout.Button("↑", GUILayout.Width(ButtonWidth)))
+                        if (GUILayout.Button("Apply", GUILayout.Width(ApplyButtonWidth)))
                         {
                             Restore(smr, snapshots[i]);
                         }
                     }
 
-                    if (GUILayout.Button("✕", GUILayout.Width(ButtonWidth)))
+                    if (GUILayout.Button("︙", GUILayout.Width(MenuButtonWidth)))
                     {
-                        deleteIndex = i;
+                        ShowRowMenu(component, i, GUILayoutUtility.GetLastRect());
                     }
-
-                    EditorGUILayout.LabelField(snapshots[i].Name);
                 }
             }
+        }
 
-            if (deleteIndex >= 0)
+        private void ShowRowMenu(BlendshapeSnapshot component, int index, Rect anchor)
+        {
+            var menu = new GenericMenu();
+            menu.AddItem(new GUIContent("Delete"), false, () => ConfirmDelete(component, index));
+            menu.DropDown(anchor);
+        }
+
+        private static void ConfirmDelete(BlendshapeSnapshot component, int index)
+        {
+            if (index < 0 || index >= component.Snapshots.Count)
             {
-                Delete(component, deleteIndex);
+                return;
+            }
+
+            bool ok = EditorUtility.DisplayDialog(
+                "スナップショットの削除",
+                $"「{component.Snapshots[index].Name}」を削除しますか？",
+                "削除",
+                "キャンセル"
+            );
+            if (ok)
+            {
+                Delete(component, index);
             }
         }
 
